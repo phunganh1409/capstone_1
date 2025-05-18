@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "34d4d5fc-7927-4419-8763-a4c5fa8ecd2d",
+		"name": "Image",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43287055",
+		"_collection_link": "https://www.postman.com/ok8888-9051/workspace/capstone-be/collection/43287055-34d4d5fc-7927-4419-8763-a4c5fa8ecd2d?action=share&source=collection_link&creator=43287055"
+	},
+	"item": [
+		{
+			"name": "Get All Image",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Search Image",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ImageByID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Comment By Id",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Check Image Save",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Comment",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

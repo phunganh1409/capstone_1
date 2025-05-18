@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Comment {
+  id             Int       @id @default(autoincrement())
+  noi_dung       String?   @db.VarChar(255)
+  ngay_binh_luan DateTime? @db.Timestamp(0)
+  user_id        Int       @default(2)
+  hinh_id        Int       @default(2)
+  deletedBy      Int       @default(0)
+  isDelete       Boolean   @default(false)
+  deleteAt       DateTime? @db.Timestamp(0)
+  createdAt      DateTime  @default(now()) @db.Timestamp(0)
+  updateAt       DateTime  @default(now()) @db.Timestamp(0)
+  Users          Users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Comment_ibfk_1")
+  Image          Image     @relation(fields: [hinh_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Comment_ibfk_2")
+
+  @@index([hinh_id], map: "hinh_id")
+  @@index([user_id], map: "user_id")
+}
+
+model Image {
+  id        Int       @id @default(autoincrement())
+  ten_hinh  String?   @db.VarChar(255)
+  duong_dan String?   @db.VarChar(255)
+  mo_ta     String?   @db.VarChar(255)
+  tuoi      Int?
+  user_id   Int       @default(2)
+  deletedBy Int       @default(0)
+  isDelete  Boolean   @default(false)
+  deleteAt  DateTime? @db.Timestamp(0)
+  createdAt DateTime  @default(now()) @db.Timestamp(0)
+  updateAt  DateTime  @default(now()) @db.Timestamp(0)
+  Comment   Comment[]
+  Users     Users     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Image_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model Roles {
+  id          Int?
+  name        String?  @db.VarChar(255)
+  description String?  @db.VarChar(255)
+  isActive    Boolean?
+  deteleBy    Int      @default(0)
+  isDeleted   Boolean  @default(false)
+  deletedAt   DateTime @default(now()) @db.Timestamp(0)
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  updatedAt   DateTime @default(now()) @db.Timestamp(0)
+
+  @@ignore
+}
+
+model Users {
+  id           Int       @id @default(autoincrement())
+  email        String?   @db.VarChar(255)
+  mat_khau     String?   @db.VarChar(255)
+  ho_ten       String?   @db.VarChar(255)
+  tuoi         Int?
+  anh_dai_dien String?   @db.VarChar(255)
+  deleteBy     Int       @default(0)
+  isDelete     Boolean   @default(false)
+  deleteAt     DateTime? @db.Timestamp(0)
+  createdAt    DateTime  @default(now()) @db.Timestamp(0)
+  updateAt     DateTime  @default(now()) @db.Timestamp(0)
+  Comment      Comment[]
+  Image        Image[]
+}
